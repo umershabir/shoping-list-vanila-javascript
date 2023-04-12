@@ -25,6 +25,7 @@ function addListItem(e) {
   node.appendChild(innerSpan);
   listing.appendChild(node);
   textValue.value = "";
+  clearBtn.style.visibility = "visible";
 }
 function inputValue(e) {
   return e.target.value;
@@ -33,10 +34,13 @@ function deleteItem(e) {
   if (e.target.classList.contains("delete-item")) {
     e.target.parentElement.parentElement.remove();
   }
+  if (listing.childNodes.length < 1) {
+    clearBtn.style.visibility = "hidden";
+  }
 }
-function clearAll(e) {
-  let childList = e.target.previousElementSibling;
-  childList.innerHTML = "";
+function clearAll() {
+  listing.innerHTML = "";
+  clearBtn.style.visibility = "hidden";
 }
 // events
 addBtn.addEventListener("click", addListItem);
